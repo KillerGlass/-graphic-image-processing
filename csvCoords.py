@@ -1,7 +1,7 @@
 import csv
 
 
-def csvExtractCoord(path, begin):
+def csvExtractCoord(path, begin=0):
     """
     This method takes as parameter a path the csv file
     and returns a list of dictionaries containing
