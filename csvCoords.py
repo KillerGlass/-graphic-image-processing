@@ -1,7 +1,7 @@
 import csv
 
 
-def csvExtractCoord(path):
+def csvExtractCoord(path, begin):
     """
     This method takes as parameter a path the csv file
     and returns a list of dictionaries containing
@@ -11,6 +11,9 @@ def csvExtractCoord(path):
     ==========
     path : str
         csv file directory.
+    
+    begin : int
+        valou from the first coordinate.
 
     """
 
@@ -21,11 +24,12 @@ def csvExtractCoord(path):
         for l in table:
             coordDict = dict({})
 
-            coordDict["xmin"] = int(l[0])
-            coordDict["ymin"] = int(l[1])
-            coordDict["xmax"] = int(l[2])
-            coordDict["ymax"] = int(l[3])
+            coordDict["xmin"] = int(l[begin])
+            coordDict["ymin"] = int(l[begin+1])
+            coordDict["xmax"] = int(l[begin+2])
+            coordDict["ymax"] = int(l[begin+3])
 
             listBox.append(coordDict)
 
     return listBox
+    

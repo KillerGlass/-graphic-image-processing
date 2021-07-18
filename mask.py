@@ -19,12 +19,12 @@ def createMask(coords, img):
 
     mask = np.zeros([shape[0], shape[1], shape[2]], dtype=int).astype(np.uint8)
 
-    for box in coords:
-        xmin = coords['xmin']
-        ymin = coords['ymin']
-        xmax = coords['xmax']
-        ymax = coords['ymax']
-
-    mask[ymin: ymax + 1, xmin:xmax + 1, :] = 255
+    for dot in coords:
+        xmin = dot['xmin']
+        ymin = dot['ymin']
+        xmax = dot['xmax']
+        ymax = dot['ymax']
+        
+        mask[ymin: ymax + 1, xmin:xmax + 1, :] = 255
 
     return mask
