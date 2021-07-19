@@ -14,14 +14,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="cambir",
-    version="0.4.4.3",
-    author="Romuere Silva, Flavio Araujo, Daniela Ushizima",
-    author_email="romuere@ufpi.edu.br",
-    description="Search for scientific images using deep learning with camBIR, the last packaging of pyCBIR.",
+    name="Grafic Imagem Processig",
+    version="1.0.0",
+    author="Francisco Jose, Mateus Assis",
+    author_email="franciscojose17@ufpi.edu.br",
+    description="Gip is a library that aims to simplify the functionality of other existing libraries for image processing.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/xdatacnn/imagesearch",
+    url="https://github.com/KillerGlass/-graphic-image-processing.git",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -29,5 +29,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=INSTALL_REQUIRES,
-    python_requires='>=3.6',
+    python_requires='>=3.8',
 )
