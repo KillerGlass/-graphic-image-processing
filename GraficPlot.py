@@ -18,11 +18,28 @@ import argparse
 def MultiPlot(rows=0, columns=0, width=10, height=30, dataset=None, formatImg="jpg"):
     
     '''
-    A função subplots será usada para criar os boxes da imagem
+    This function will receive an image dataset where it will plot them, 
+    based on the number of rows and columns passed as parameter
 
-    For para rows percorrerá as linhas e o for para cols pecorrerá as linhas
+    PARAMETERS
+    ==========
+    rows: int
+        determines how many lines the plot will have
 
-    K será usada como variavel de controle, para imagens
+    columsn:int
+        determines how many columns the plot will have
+
+    width:int
+        specifies the width of the images
+
+    heigth: int
+        specifies the height of the images
+
+    dataset: str
+        image dataset
+
+    formatImg:
+        the format of the images
 
     '''
     args = argparse.ArgumentParser(description='multiple image plot')
@@ -56,6 +73,34 @@ def MultiPlot(rows=0, columns=0, width=10, height=30, dataset=None, formatImg="j
 
 
 def MultiHistPlot(rows=0, columns=0, width=10, height=30, dataset=None, formatImg='jpg'):
+
+
+    '''
+    This function will receive an image dataset where it will 
+    perform the histogram graph for all images,
+    based on the number of rows and columns passed as a parameter
+
+    PARAMETERS
+    ==========
+    rows: int
+        determines how many lines the plot will have
+
+    columsn:int
+        determines how many columns the plot will have
+
+    width:int
+        specifies the width of the images
+
+    heigth: int
+        specifies the height of the images
+
+    dataset: str
+        image dataset
+
+    formatImg:
+        the format of the images
+
+    '''
 
     args = argparse.ArgumentParser(description='multiple-image histogram plot')
     args.add_argument('--dataset', help='dataset para plot', type=str, default=None)
@@ -114,8 +159,45 @@ df
 # In[156]:
 
 
-def LearnPlot(Epochs=1,Dataset=None,MetricsName=None,Titulo="Grafico de Metricas",Eixo_x="Eixo X",Eixo_y="Eixo_Y",Height=8,Width=15, Save=False):
+def LearnPlot(Epochs=1,Dataset=None,MetricsName=None,Title="Grafico de Metricas",Eixo_x="Eixo X",Eixo_y="Eixo_Y",Height=8,Width=15, Save=False):
 
+    '''
+    This function will receive a dataframe with the learning metrics and will 
+    return a line graph containing the performance of those same metrics
+
+    PARAMETERS
+    ==========
+    Epochs: int
+        number of epochs whose metrics were obtained
+
+    Dataset:dataframe
+        metrics dataset
+
+    MetricsName:list
+        name of the metrics contained in the dataset
+
+    Title: str
+        graphic title
+
+    Dataset: str
+        image dataset
+
+    Eixo_x:str
+        x-axis name
+
+    Eixo_y:str
+        y-axis name
+
+    Width:int
+        specifies the width of the images
+
+    Heigth: int
+        specifies the height of the images
+
+    Save:bool
+        Specify whether to save the graphic
+
+    '''
     Epochs = [x for x in range(Epochs)]
     plt.figure(figsize=(Width,Height))
     for i in MetricsName:
@@ -128,7 +210,7 @@ def LearnPlot(Epochs=1,Dataset=None,MetricsName=None,Titulo="Grafico de Metricas
     plt.xlabel(Eixo_x)
 
     if Save:
-        plt.savefig(Titulo+'.svg')
+        plt.savefig(Title+'.svg')
 
     plt.show()
 
@@ -142,7 +224,43 @@ LearnPlot(5, df,["Map","Precision","Recall","Acuracia"],"Grafico de metricas","E
 # In[189]:
 
 
-def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,equaGray=True):
+def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,equaGray=True,adap=True,adapGray):
+
+
+    '''
+    This function will apply different filters over
+    an image and plot each one of them
+
+    PARAMETERS
+    ==========
+    imagem:str
+        path to image
+
+    norm: bool
+        normal image plot
+
+    gay: bool
+        gray image plot
+
+    equa:bool
+        image plot with histogram equalization
+
+    equaGray:bool
+        image plot with histogram and gray equalization
+
+    adap:bool
+        image plot with adapthist equalization
+
+    adapGray:bool
+        image plot with adapthist and gray equalization
+
+    width:int
+        specifies the width of the images
+
+    heigth: int
+        specifies the height of the images
+    '''
+
    
     args = argparse.ArgumentParser(description='multiple-image histogram plot')
     args.add_argument('--imagem', help='dataset para plot', type=str, default=None)
@@ -157,6 +275,8 @@ def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,e
                            '--gray',str(gray),
                            "--equa", str(equa),
                            "--equaGray", str(equaGray),
+                            "--adap", str(adap),
+                           "--adapGray", str(adapGray)
                            "--height", str(height),
                            "--width", str(width),
                             "--imagem", imagem,])
@@ -165,26 +285,39 @@ def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,e
     plt.figure(figsize=(args.width,args.height))
     
     if args.norm:
-        plt.subplot(421), plt.imshow(args.imagem)
+        plt.subplot(521), plt.imshow(args.imagem)
         weights = np.ones(args.imagem.ravel().shape) / float(args.imagem.size)
-        plt.subplot(422),  plt.hist(args.imagem.flatten(), bins=256,weights=weights)
+        plt.subplot(522),  plt.hist(args.imagem.flatten(), bins=256,weights=weights)
     if args.gray:
         img_gray = color.rgb2gray(args.imagem)
-        plt.subplot(423), plt.imshow(img_gray,plt.cm.gray)
+        plt.subplot(523), plt.imshow(img_gray,plt.cm.gray)
         weights = np.ones(img_gray.ravel().shape) / float(img_gray.size)
-        plt.subplot(424),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
+        plt.subplot(524),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
         
     if args.equa:
         img_gray = exposure.equalize_hist(args.imagem)
-        plt.subplot(425), plt.imshow(img_gray,plt.cm.gray)
+        plt.subplot(525), plt.imshow(img_gray,plt.cm.gray)
         weights = np.ones(img_gray.ravel().shape) / float(img_gray.size)
-        plt.subplot(426),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
+        plt.subplot(526),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
         
     if args.equaGray:
         img_gray = exposure.equalize_hist(color.rgb2gray(args.imagem))
-        plt.subplot(427), plt.imshow(img_gray,plt.cm.gray)
+        plt.subplot(527), plt.imshow(img_gray,plt.cm.gray)
         weights = np.ones(img_gray.ravel().shape) / float(img_gray.size)
-        plt.subplot(428),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
+        plt.subplot(528),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
+
+
+    if args.adap:
+        img_gray = exposure.equalize_adapthist((args.imagem))
+        plt.subplot(529), plt.imshow(img_gray,plt.cm.gray)
+        weights = np.ones(img_gray.ravel().shape) / float(img_gray.size)
+        plt.subplot(530),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
+
+    if args.adapGray:
+        img_gray = exposure.equalize_adapthist(color.rgb2gray(args.imagem))
+        plt.subplot(531), plt.imshow(img_gray,plt.cm.gray)
+        weights = np.ones(img_gray.ravel().shape) / float(img_gray.size)
+        plt.subplot(532),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
 
 
 # In[190]:
