@@ -1,18 +1,10 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[151]:
-
-
 import matplotlib.pyplot as plt
 from skimage.io import imshow, imread,imread_collection
 from skimage import color,exposure
 from glob import glob
 import numpy as np
 import argparse
-
-
-# In[152]:
+import pandas as pd
 
 
 def MultiPlot(rows=0, columns=0, width=10, height=30, dataset=None, formatImg="jpg"):
@@ -133,30 +125,6 @@ def MultiHistPlot(rows=0, columns=0, width=10, height=30, dataset=None, formatIm
                 k+=1
 
     plt.show()    
-        
-
-
-# In[153]:
-
-
-MultiHistPlot(2,3,10,dataset='imagem',formatImg='jpeg')
-
-
-# In[154]:
-
-
-dic = {"Map":[1,2,3,4,5],"Precision":[8,7,6,4,2],"Recall":[3,4,5,6,8],"Acuracia":[9,8,7,9,9]}
-
-
-# In[155]:
-
-
-import pandas as pd
-df = pd.DataFrame(dic)
-df
-
-
-# In[156]:
 
 
 def LearnPlot(Epochs=1,Dataset=None,MetricsName=None,Title="Grafico de Metricas",Eixo_x="Eixo X",Eixo_y="Eixo_Y",Height=8,Width=15, Save=False):
@@ -215,14 +183,6 @@ def LearnPlot(Epochs=1,Dataset=None,MetricsName=None,Title="Grafico de Metricas"
     plt.show()
 
 
-# In[20]:
-
-
-LearnPlot(5, df,["Map","Precision","Recall","Acuracia"],"Grafico de metricas","Epoch","Result")
-
-
-# In[189]:
-
 
 def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,equaGray=True,adap=True,adapGray):
 
@@ -260,6 +220,9 @@ def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,e
     heigth: int
         specifies the height of the images
     '''
+
+
+def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,equaGray=True):
 
    
     args = argparse.ArgumentParser(description='multiple-image histogram plot')
@@ -317,23 +280,6 @@ def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,e
         img_gray = exposure.equalize_adapthist(color.rgb2gray(args.imagem))
         plt.subplot(531), plt.imshow(img_gray,plt.cm.gray)
         weights = np.ones(img_gray.ravel().shape) / float(img_gray.size)
+
         plt.subplot(532),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
-
-
-# In[190]:
-
-
-MultiImage("imagem/The Grey Jay.jpeg",20,10)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 

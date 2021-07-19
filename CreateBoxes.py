@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[21]:
-
-
 import xml.etree.ElementTree as Et
 import cv2
 import imageio
@@ -11,9 +5,6 @@ from skimage.io import imshow, imread,imread_collection
 import csv
 import argparse
 import numpy as np
-
-
-# In[22]:
 
 
 def xmlExtractCoord(path=None, item=None, child=None):
@@ -52,9 +43,6 @@ def xmlExtractCoord(path=None, item=None, child=None):
     return listBox
 
 
-# In[23]:
-
-
 def csvExtractCoord(path, begin=0):
     """
     This method takes as parameter a path the csv file
@@ -87,10 +75,6 @@ def csvExtractCoord(path, begin=0):
 
     return listBox
     
-
-
-# In[24]:
-
 
 def ImageBox(path_file=None,item=None,child=None,imagem=None,file='csv'):
     
@@ -126,15 +110,6 @@ def ImageBox(path_file=None,item=None,child=None,imagem=None,file='csv'):
     
    
     imageio.imwrite("boxes_"+args.imagem, image_orig) 
-
-
-# In[25]:
-
-
-ImageBox("tuberculosis-phone-0008.xml","object","bndbox","_tuberculosis-phone-0008.jpg","xml")
-
-
-# In[32]:
 
 
 def MaskBox(path_file=None,item=None,child=None,imagem=None,file='csv'):
@@ -195,17 +170,3 @@ def MaskBox(path_file=None,item=None,child=None,imagem=None,file='csv'):
     imageio.imwrite("boxes_"+args.imagem, mask) 
    
     return Mask
-   
-
-
-# In[33]:
-
-
-MaskBox("tuberculosis-phone-0008.xml","object","bndbox","_tuberculosis-phone-0008.jpg","xml")
-
-
-# In[ ]:
-
-
-
-

@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[115]:
-
-
 import matplotlib.pyplot as plt
 from skimage.io import imshow, imread,imread_collection
 from sklearn.model_selection import train_test_split
@@ -15,9 +9,6 @@ import imageio
 import os
 
 
-# In[59]:
-
-
 def DataFilters(dataset=None, Gray=True,equaHist=True,equaAdap=True,formatImg='jpg'):
    
     args = argparse.ArgumentParser(description='multiple-image histogram plot')
@@ -48,16 +39,6 @@ def DataFilters(dataset=None, Gray=True,equaHist=True,equaAdap=True,formatImg='j
     return args.dataset
 
 
-# In[62]:
-
-
-imagem = DataFilters(dataset='imagem',Gray=False,equaAdap=False,formatImg='jpeg')
-imshow(imagem[0])
-
-
-# In[ ]:
-
-
 def DataFilters(dataset=None, Gray=True,equaHist=True,equaAdap=True,formatImg='jpg'):
    
     args = argparse.ArgumentParser(description='multiple-image histogram plot')
@@ -86,9 +67,6 @@ def DataFilters(dataset=None, Gray=True,equaHist=True,equaAdap=True,formatImg='j
     
   
     return args.dataset
-
-
-# In[162]:
 
 
 def EquaAdapthist(dataset,canal):
@@ -103,9 +81,6 @@ def EquaAdapthist(dataset,canal):
     return dataset_canal
 
 
-# In[163]:
-
-
 def EquaHistograma(dataset,canal):
     dataset_canal = []
     for imagem in dataset:
@@ -116,9 +91,6 @@ def EquaHistograma(dataset,canal):
         dataset_canal.append(final_img)
         
     return dataset_canal
-
-
-# In[166]:
 
 
 def DataFilters(dataset=None,canal=None, equaHist=True,equaAdap=True,formatImg='jpg'):
@@ -166,16 +138,6 @@ def DataFilters(dataset=None,canal=None, equaHist=True,equaAdap=True,formatImg='
     return dataset_canal
 
 
-# In[167]:
-
-
-imagem = DataFilters(dataset='imagem',canal="green",equaAdap=False,formatImg='jpeg')
-imshow(imagem[0])
-
-
-# In[154]:
-
-
 def PathSave(dataset,path):
 
     if not os.path.exists(path):
@@ -188,10 +150,6 @@ def PathSave(dataset,path):
             out, i = i.split('/') 
         imageio.imwrite(path + '/' + i, img) 
     
-
-
-# In[155]:
-
 
 def DataSplit(dataset=None,size_test=0.2, size_validation=0.1,path_train='Train',path_validation='Validation',path_test="Test",formatImg='jpg'):
     
@@ -231,16 +189,3 @@ def DataSplit(dataset=None,size_test=0.2, size_validation=0.1,path_train='Train'
 
     
     return train,validation,test
-
-
-# In[156]:
-
-
-imagem = DataSplit(dataset='imagem',formatImg='jpeg')
-
-
-# In[ ]:
-
-
-
-
