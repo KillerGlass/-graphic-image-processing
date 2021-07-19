@@ -4,11 +4,11 @@ GIP (Graphic Image Processing) aims to facilitate both Pre-processing and graphi
      world of image processing to get started.
    
 
-##GraficPlot
+## GraficPlot
  Plot multiple graphs
  
-##ImageFilters
+## ImageFilters
 Apply different filters to images
 
-##CreateBox
+## CreateBox
 Create boxes on images
