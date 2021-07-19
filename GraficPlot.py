@@ -184,7 +184,7 @@ def LearnPlot(Epochs=1,Dataset=None,MetricsName=None,Title="Grafico de Metricas"
 
 
 
-def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,equaGray=True,adap=True,adapGray):
+def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,equaGray=True,adap=True,adapGray=True):
 
 
     '''
@@ -221,9 +221,6 @@ def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,e
         specifies the height of the images
     '''
 
-
-def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,equaGray=True):
-
    
     args = argparse.ArgumentParser(description='multiple-image histogram plot')
     args.add_argument('--imagem', help='dataset para plot', type=str, default=None)
@@ -231,6 +228,8 @@ def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,e
     args.add_argument('--gray', help='colunas do grafico', type=bool, default=False)
     args.add_argument('--equa', help='colunas do grafico', type=bool, default=False)
     args.add_argument('--equaGray', help='colunas do grafico', type=bool, default=False)
+    args.add_argument('--adap', help='colunas do grafico', type=bool, default=False)
+    args.add_argument('--adapGray', help='colunas do grafico', type=bool, default=False)
     args.add_argument('--height', help='altura da imagem', type=int, default=10)
     args.add_argument('--width', help='largura imagem', type=int, default=30)
 
@@ -239,47 +238,51 @@ def MultiImage(imagem=None, width=20, height=10, norm=True,gray=True,equa=True,e
                            "--equa", str(equa),
                            "--equaGray", str(equaGray),
                             "--adap", str(adap),
-                           "--adapGray", str(adapGray)
+                           "--adapGray", str(adapGray),
                            "--height", str(height),
                            "--width", str(width),
                             "--imagem", imagem,])
 
+    
     args.imagem = imread(args.imagem)
     plt.figure(figsize=(args.width,args.height))
     
     if args.norm:
-        plt.subplot(521), plt.imshow(args.imagem)
+        plt.subplot(421), plt.imshow(args.imagem)
         weights = np.ones(args.imagem.ravel().shape) / float(args.imagem.size)
-        plt.subplot(522),  plt.hist(args.imagem.flatten(), bins=256,weights=weights)
+        plt.subplot(422),  plt.hist(args.imagem.flatten(), bins=256,weights=weights)
     if args.gray:
         img_gray = color.rgb2gray(args.imagem)
-        plt.subplot(523), plt.imshow(img_gray,plt.cm.gray)
+        plt.subplot(423), plt.imshow(img_gray,plt.cm.gray)
         weights = np.ones(img_gray.ravel().shape) / float(img_gray.size)
-        plt.subplot(524),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
+        plt.subplot(424),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
         
     if args.equa:
         img_gray = exposure.equalize_hist(args.imagem)
-        plt.subplot(525), plt.imshow(img_gray,plt.cm.gray)
+        plt.subplot(425), plt.imshow(img_gray,plt.cm.gray)
         weights = np.ones(img_gray.ravel().shape) / float(img_gray.size)
-        plt.subplot(526),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
+        plt.subplot(426),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
         
     if args.equaGray:
         img_gray = exposure.equalize_hist(color.rgb2gray(args.imagem))
-        plt.subplot(527), plt.imshow(img_gray,plt.cm.gray)
+        plt.subplot(427), plt.imshow(img_gray,plt.cm.gray)
         weights = np.ones(img_gray.ravel().shape) / float(img_gray.size)
-        plt.subplot(528),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
+        plt.subplot(428),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
 
-
+    '''
     if args.adap:
+        print("entrou")
         img_gray = exposure.equalize_adapthist((args.imagem))
-        plt.subplot(529), plt.imshow(img_gray,plt.cm.gray)
+        #plt.subplot(620), plt.imshow(img_gray,plt.cm.gray)
         weights = np.ones(img_gray.ravel().shape) / float(img_gray.size)
-        plt.subplot(530),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
+        #plt.subplot(629),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
 
+ 
     if args.adapGray:
         img_gray = exposure.equalize_adapthist(color.rgb2gray(args.imagem))
-        plt.subplot(531), plt.imshow(img_gray,plt.cm.gray)
+        plt.subplot(831), plt.imshow(img_gray,plt.cm.gray)
         weights = np.ones(img_gray.ravel().shape) / float(img_gray.size)
 
-        plt.subplot(532),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
+        plt.subplot(832),  plt.hist(img_gray.flatten(), bins=256,weights=weights)
 
+    '''

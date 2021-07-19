@@ -77,6 +77,29 @@ def csvExtractCoord(path, begin=0):
     
 
 def ImageBox(path_file=None,item=None,child=None,imagem=None,file='csv'):
+
+
+    """
+    this method takes a path to the image and an xml or csv file 
+    containing coordinates for creating it returns bounding boxes in an image.
+
+    PARAMETERS
+    ==========
+    coords : list
+        list with object's coordinates.
+    img : np.array
+        image base.
+     path : str
+        XML file directory.
+
+    item : str
+        searched xml tag.
+
+    child : str
+        searched object.
+    file: str
+        chosen file type
+    """
     
     args = argparse.ArgumentParser(description='Criacação de boxes')
     args.add_argument('--imagem', help='dataset para plot', type=str, default=None)
@@ -115,8 +138,9 @@ def ImageBox(path_file=None,item=None,child=None,imagem=None,file='csv'):
 def MaskBox(path_file=None,item=None,child=None,imagem=None,file='csv'):
     
     """
-    this method receives a list containing the coordinates of an image,
-    and returns an image with the Bounding Boxes.
+     this method takes a path to the image and an xml or csv file containing 
+     coordinates for creating it returns bounding boxes in a mask created based
+      on the size of the image.
 
     PARAMETERS
     ==========

@@ -10,6 +10,29 @@ import os
 
 
 def DataFilters(dataset=None, Gray=True,equaHist=True,equaAdap=True,formatImg='jpg'):
+
+
+    '''
+    apply multiple filters to an image dataset
+    PARAMETERS
+    ==========
+
+    dataset: str
+        image dataset
+
+    Gray: bool
+        gray image filter
+
+    equaHist:bool
+        apply histogram equalization filter to the image
+
+    equaAdap:bool
+        apply adapthist equalization filter to the image
+
+    formatImg:
+        the format of the images
+
+    '''
    
     args = argparse.ArgumentParser(description='multiple-image histogram plot')
     args.add_argument('--dataset', help='dataset para plot', type=str, default=None)
@@ -39,34 +62,6 @@ def DataFilters(dataset=None, Gray=True,equaHist=True,equaAdap=True,formatImg='j
     return args.dataset
 
 
-def DataFilters(dataset=None, Gray=True,equaHist=True,equaAdap=True,formatImg='jpg'):
-   
-    args = argparse.ArgumentParser(description='multiple-image histogram plot')
-    args.add_argument('--dataset', help='dataset para plot', type=str, default=None)
-    args.add_argument('--equaHist', help='colunas do grafico', type=bool, default=False)
-    args.add_argument('--Gray', help='colunas do grafico', type=bool, default=False)
-    args.add_argument('--equaAdap', help='colunas do grafico', type=bool, default=False)
-    args.add_argument('--formatImg', help='formato das imagens', type=str, default="jpg")
-    
-    args = args.parse_args(["--dataset", dataset,
-                           "--equaHist", str(equaHist),
-                            "--equaAdap", str(equaAdap),
-                            "--Gray", str(Gray),
-                            "--formatImg", formatImg])
-    
-    args.dataset = glob(args.dataset + '/*.' + args.formatImg)
-    args.dataset = imread_collection(args.dataset)
-    if Gray:
-        args.dataset = [color.rgb2gray(x) for x in args.dataset]
-        
-    if args.equaHist:
-        args.dataset = [exposure.equalize_hist(x) for x in args.dataset]
-        
-    if args.equaAdap:
-        args.dataset = [exposure.equalize_adapthist(x) for x in args.dataset]
-    
-  
-    return args.dataset
 
 
 def EquaAdapthist(dataset,canal):
@@ -94,6 +89,32 @@ def EquaHistograma(dataset,canal):
 
 
 def DataFilters(dataset=None,canal=None, equaHist=True,equaAdap=True,formatImg='jpg'):
+
+
+    '''
+    apply a filter to a certain color channel in the image
+    PARAMETERS
+    ==========
+
+    dataset: str
+        image dataset
+
+    canal:int
+        chosen color channel
+
+    Gray: bool
+        gray image filter
+
+    equaHist:bool
+        apply histogram equalization filter to the image
+
+    equaAdap:bool
+        apply adapthist equalization filter to the image
+
+    formatImg:
+        the format of the images
+
+    '''
    
     args = argparse.ArgumentParser(description='multiple-image histogram plot')
     args.add_argument('--dataset', help='dataset para plot', type=str, default=None)
@@ -153,6 +174,38 @@ def PathSave(dataset,path):
 
 def DataSplit(dataset=None,size_test=0.2, size_validation=0.1,path_train='Train',path_validation='Validation',path_test="Test",formatImg='jpg'):
     
+    
+    '''
+    This function splits the image dataset and saves it in user-determined folders
+
+    PARAMETERS
+    ==========
+
+    dataset: str
+        image dataset
+
+    size_test:float
+        the proportion of the division of training and test data
+
+    size_validation:float
+        the proportion of the division of training and validation data
+
+    path_train: str
+        path to save training images
+
+    path_validation: str
+        path to save validation images
+
+    path_test: str
+        path to save test images
+
+
+    formatImg:
+        the format of the images
+
+    '''
+
+
     args = argparse.ArgumentParser(description='multiple-image histogram plot')
     args.add_argument('--dataset', help='dataset para plot', type=str, default=None)
     args.add_argument('--size_test', help='colunas do grafico', type=float, default=0.2)
