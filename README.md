@@ -13,7 +13,7 @@ of the same image and finally create line graphs of the learning metrics
 ![Screenshot](imagem/plot.png)
 
 ### Multiple-image histogram plot examples
-![Screenshot](imagem/plot.png)
+![Screenshot](imagem/histograma.png)
  
  
  ### Examples of the metrics chart
