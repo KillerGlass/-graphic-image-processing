@@ -9,12 +9,32 @@ GIP (Graphic Image Processing) aims to facilitate both Pre-processing and graphi
 intuitive and practical, plotting several images in user-defined axis, 
 as well as plotting their histogram. It will also display several graphs 
 of the same image and finally create line graphs of the learning metrics
+### Multiple image plot examples
+![Screenshot](imagem/plot.png)
+
+### Multiple-image histogram plot examples
+![Screenshot](imagem/plot.png)
+ 
+ 
+ ### Examples of the metrics chart
+![Screenshot](imagem/Train Loss.svg)
+ 
+ 
+ ### multiple image plot examples
+![Screenshot](imagem/multi.png)
+ 
  
 ## ImageFilters
 ImageFilters comes to facilitate the application of filters in an entire 
 image dataset, being able to apply a filter to a certain color channel, 
 also performing the division of an image base in test, train and validation, 
 saving the images in folders so make life easier for the user.
+
+ ### Examples of Applying Multiple Filters to an Image
+![Screenshot](imagem/equaliza.png)
+
+ ### Examples of applying a filter to a color channel
+![Screenshot](imagem/canal.png)
 
 ## CreateBox
 
