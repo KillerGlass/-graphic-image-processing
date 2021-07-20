@@ -20,7 +20,7 @@ of the same image and finally create line graphs of the learning metrics
 ![Screenshot](imagem/metricas.png)
  
  
- ### multiple image plot examples
+ ### Example of multiple plots of the same image
 ![Screenshot](imagem/multi.png)
  
  
