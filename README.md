@@ -22,6 +22,9 @@ saving the images in folders so make life easier for the user.
 This module offers the possibility of creating masks and plotting bounding 
 boxes on this mask, passed through an xml and csv file, being also able to 
 plot the boxes in an image.
+
+![Screenshot](imagem/boxe_tuberculosis-phone-0088.jpg)
+
 ![alt text](/https://github.com/KillerGlass/-graphic-image-processing/blob/master/imagem/boxe_tuberculosis-phone-0088.jpg?raw=true "Examples of bounding boxes in an image")
 
 
