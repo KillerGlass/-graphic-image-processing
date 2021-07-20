@@ -5,10 +5,24 @@ GIP (Graphic Image Processing) aims to facilitate both Pre-processing and graphi
    
 
 ## GraficPlot
- Plot multiple graphs
+ This module aims to simplify the plot of graphics in order to make it more 
+intuitive and practical, plotting several images in user-defined axis, 
+as well as plotting their histogram. It will also display several graphs 
+of the same image and finally create line graphs of the learning metrics
  
 ## ImageFilters
-Apply different filters to images
+ImageFilters comes to facilitate the application of filters in an entire 
+image dataset, being able to apply a filter to a certain color channel, 
+also performing the division of an image base in test, train and validation, 
+saving the images in folders so make life easier for the user.
 
 ## CreateBox
-Create boxes on images
+
+
+This module offers the possibility of creating masks and plotting bounding 
+boxes on this mask, passed through an xml and csv file, being also able to 
+plot the boxes in an image.
+
+![Alt text](relative/path/to/imagem/boxe_tuberculosis-phone-0088.jpg?raw=true "Examples of bounding boxes in an image")
+
+![Alt text](relative/path/to/imagem/maskboxe_tuberculosis-phone-0088.jpg?raw=true "Examples of bounding boxes in an mask")
