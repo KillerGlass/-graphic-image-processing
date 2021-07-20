@@ -17,7 +17,7 @@ of the same image and finally create line graphs of the learning metrics
  
  
  ### Examples of the metrics chart
-![Screenshot](imagem/Train Loss.svg)
+![Screenshot](imagem/metricas.png)
  
  
  ### multiple image plot examples
